@@ -35,7 +35,7 @@ public class User {
 	private Date 		birthDate;
 	
 	@Column(name = "Is_Active", updatable = true)
-	private Boolean 	isActive;
+	private Boolean 	isActive	=	true;
 
 
 	@Override

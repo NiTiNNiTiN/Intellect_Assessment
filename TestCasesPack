@@ -1,0 +1,222 @@
+Application Specific Codes:
+
+	1 - No First name found
+	2 - No Last name found
+	3 - No Email Found
+	4 - Invalid Email
+	5 - No Pin Code Found
+	6 - No Birth Date FOund	
+	7 - Invalid Birth Date
+	8 - ID missing from data
+	9 - User sent dosen't exists
+
+							TEST CASES
+							----------
+1. USER ADDITION
+----------------
+UTC-1:
+------
+Input:
+{
+    "fName":"John",
+    "lName":"Smith",
+    "email":"John.Smith@gmail.com",
+    "pinCode":123456,
+    "birthDate":"1992-11-17"
+}
+Output:
+{
+    "resMsg": "User Added Successfully!!",
+    "userId": "1",
+    "valErrors": []
+}
+
+UTC-2:
+------
+Input:
+{
+    "fName":"John",
+    "lName":"Smith",
+    "email":"John.Smith@gmail.com",
+    "pinCode":123456,
+    "birthDate":"1992-11-17"
+}
+Output:
+{
+    "resMsg": "User wasn't Added, There already exists an active User with this email ID.",
+    "userId": null,
+    "valErrors": []
+}
+
+UTC-3:
+------
+Input:
+{
+    "fName":"John",
+    "lName":"Smith",
+    "email":"John.Smith@gmail.com",
+    "pinCode":123456,
+    "birthDate":"2018-11-17"
+}
+Output:
+{
+    "resMsg": "User wasn't Added, There exists validation errors.",
+    "userId": null,
+    "valErrors": [
+        {
+            "code": "7",
+            "field": "birthDate",
+            "message": "Invalid Birth Date"
+        }
+    ]
+}
+
+UTC-4:
+------
+Input:
+{
+    "fName":"John",
+    "lName":"Smith",
+    "email":"John.Smithgmail.com",
+    "pinCode":123456,
+    "birthDate":"1992-11-17"
+}
+Output:
+{
+    "resMsg": "User wasn't Added, There exists validation errors.",
+    "userId": null,
+    "valErrors": [
+        {
+            "code": "4",
+            "field": "email",
+            "message": "Invalid Email"
+        }
+    ]
+}
+
+UTC-5:
+------
+Input:
+{
+    
+}
+Output:
+{
+    "resMsg": "User wasn't Added, There exists validation errors.",
+    "userId": null,
+    "valErrors": [
+        {
+            "code": "1",
+            "field": "fname",
+            "message": "No First Name Found"
+        },
+        {
+            "code": "2",
+            "field": "lname",
+            "message": "No Last Name Found"
+        },
+        {
+            "code": "3",
+            "field": "email",
+            "message": "No Email Found"
+        },
+        {
+            "code": "5",
+            "field": "pinCode",
+            "message": "No Pin Code Found"
+        },
+        {
+            "code": "6",
+            "field": "birthDate",
+            "message": "No Birth Date Found"
+        }
+    ]
+}
+
+
+2. USER UPDATION:
+-----------------
+UTC-1:
+------
+Input:
+{
+	"id":"1",
+    "pinCode":123456,
+    "birthDate":"1992-11-17"
+}
+Output:
+{
+    "resMsg": "User Updated Successfully!!",
+    "userId": "1",
+    "valErrors": []
+}
+
+UTC-2:
+------
+Input:
+{
+	"id":"11",
+    "pinCode":123456,
+    "birthDate":"1992-11-17"
+}
+Output:
+{
+    "resMsg": "User wasn't Updated, There exists abnormality in the User's data",
+    "userId": "11",
+    "valErrors": [
+        {
+            "code": "9",
+            "field": "Id",
+            "message": "User sent dosen't exists"
+        }
+    ]
+}
+
+UTC-3:
+------
+Input:
+{
+    "pinCode":123456,
+    "birthDate":"1992-11-17"
+}
+Output:
+{
+    "resMsg": "User wasn't Updated, There exists abnormality in the User's data",
+    "userId": null,
+    "valErrors": [
+        {
+            "code": "8",
+            "field": "Id",
+            "message": "ID missing from data"
+        }
+    ]
+}
+
+3. USER DELETION:
+-----------------
+UTC-1:
+------
+Input: DELETE Method on URL:
+ 	http://localhost:8080/user/delete?id=1
+Output:
+{
+    "resMsg": "User Deleted Successfully!!",
+    "userId": "1",
+    "valErrors": []
+}
+UTC-2:
+------
+Input: DELETE Method on URL:
+	http://localhost:8080/user/delete?id=10
+Output:
+{
+    "resMsg": "User wasn't deleted, Problem with the sent ID",
+    "userId": "10",
+    "valErrors": [
+        {
+            "code": "9",
+            "field": "Id",
+            "message": "User sent dosen't exists"
+        }
+    ]
+}

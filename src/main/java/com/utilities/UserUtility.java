@@ -23,7 +23,6 @@ public class UserUtility {
 
 	ValidationError validationError;
 	
-	// 0 - No Error
 	// 1 - No First name found
 	// 2 - No Last name found
 	// 3 - No Email Found
@@ -33,7 +32,6 @@ public class UserUtility {
 	// 7 - Invalid Birth Date
 	// 8 - ID missing from data
 	// 9 - User sent dosen't exists
-
 	
 	public Boolean validateUserAddition(User user){
 		Log.info("Checking User's existance : {}", user);
