@@ -24,6 +24,8 @@ The service is just a simple user management REST service. It uses an in-memory 
 Available services are: add, update, delete. Use the required one by adding with standard server URl like:
           
           http://{server}:{port}/user/add, http://{server}:{port}/user/update, http://{server}:{port}/user/delete
+	  	      
+To View all scenerio's Test cases and know about the application related status code, visit TestCasePack text file
           
 INSERT A USER
 -------------
@@ -46,7 +48,7 @@ UPDATE A USER (Only PinCOde and Date Of Birth)
 DELETE A USER
 -------------
     http://{server}:{port}/user/delete?id=1
-    
+
 To view your H2 in-memory datbase    
 -----------------------------------
 To view and query the database you can browse to http://{server}:{port}/userdatabase. Username is 'admin' with password as 'admin'. File locally saved is named intellectDB. 
